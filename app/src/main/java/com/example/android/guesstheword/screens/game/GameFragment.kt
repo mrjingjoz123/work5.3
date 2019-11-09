@@ -54,14 +54,14 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         /** Setting up LiveData observation relationship **/
-        viewModel.word.observe(this, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
+//        viewModel.word.observe(this, Observer { newWord ->
+//            binding.wordText.text = newWord
+//        })
 
-        viewModel.score.observe(this, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-
-        })
+//        viewModel.score.observe(this, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//
+//        })
 
         // Observer for the Game finished event
         viewModel.eventGameFinish.observe(this, Observer<Boolean> { hasFinished ->
@@ -69,24 +69,13 @@ class GameFragment : Fragment() {
         })
 
         binding.gameViewModel = viewModel
-//        binding.correctButton.setOnClickListener { onCorrect() }
-//        binding.skipButton.setOnClickListener { onSkip() }
-//        binding.endGameButton.setOnClickListener { onEndGame() }
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 
 
     /** Methods for buttons presses **/
-//
-//    private fun onSkip() {
-//        viewModel.onSkip()
-//    }
-//    private fun onCorrect() {
-//        viewModel.onCorrect()
-//    }
-//    private fun onEndGame() {
-//        gameFinished()
-//    }
 
     private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
